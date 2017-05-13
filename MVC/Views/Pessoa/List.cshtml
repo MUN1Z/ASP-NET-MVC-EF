@@ -1,0 +1,51 @@
+﻿@model IEnumerable<MVC.Models.PessoaModels>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    <h2>Cadastro de Pessoa</h2>
+    <div class="container">
+        @Html.ActionLink("Cadastrar nova", "Create", new{ @class = "btn btn-default"})
+        <table class="table table-hover table-striped">
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Nome)</th>
+                <th>@Html.DisplayNameFor(model => model.Sobrenome)</th>
+                <th>@Html.DisplayNameFor(model => model.Cpf)</th>
+                <th>@Html.DisplayNameFor(model => model.Email)</th>
+                <th>@Html.DisplayNameFor(model => model.Telefone)</th>
+                <th>@Html.DisplayNameFor(model => model.DataNascimento)</th>
+                <th>@Html.DisplayName("Ações")</th>
+            </tr>
+
+            @if (Model != null)
+            {
+                foreach (var pessoa in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(m => pessoa.Nome)</td>
+                        <td>@Html.DisplayFor(m => pessoa.Sobrenome)</td>
+                        <td>@Html.DisplayFor(m => pessoa.Cpf)</td>
+                        <td>@Html.DisplayFor(m => pessoa.Email)</td>
+                        <td>@Html.DisplayFor(m => pessoa.Telefone)</td>
+                        <td>@Html.DisplayFor(m => pessoa.DataNascimento)</td>
+                        <td>
+                            @Html.ActionLink("Editar", "Edit", new { id = pessoa.Codigo }, new{@class = "btn-sm btn-warning"})
+                            @Html.ActionLink("Detalhar", "Details", new { id = pessoa.Codigo}, new { @class = "btn-sm btn-info" })
+                            @Html.ActionLink("Excluir", "Delete", new {id = pessoa.Codigo}, new { @class = "btn-sm btn-danger" })
+                        </td>
+                    </tr>
+                }
+            }
+        </table>
+    </div>
+</body>
+</html>

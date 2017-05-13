@@ -1,0 +1,61 @@
+﻿@model MVC.Models.PessoaModels
+
+@{
+    ViewBag.Title = "Cadastro de Pessoa";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Html.EnableClientValidation();
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    <h2>Cadastro de Pessoa</h2>
+    <div class="container">
+        @using (Html.BeginForm())
+        {
+
+            @Html.HiddenFor(c => Model.Codigo)
+            
+            <div class="form-group">
+                @Html.LabelFor(c => Model.Cpf)
+                @Html.TextBoxFor(c => Model.Cpf, new { @class = "form-control"})
+                @Html.ValidationMessageFor(c => Model.Cpf)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(c => Model.Nome)
+                @Html.TextBoxFor(c => Model.Nome, new { @class = "form-control" })
+                @Html.ValidationMessageFor(c => Model.Nome)
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(c => Model.Sobrenome)
+                @Html.TextBoxFor(c => Model.Sobrenome, new { @class = "form-control" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(c => Model.Email)
+                @Html.TextBoxFor(c => Model.Email, new { @class = "form-control" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(c => Model.Telefone)
+                @Html.TextBoxFor(c => Model.Telefone, new { @class = "form-control" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(c => Model.DataNascimento)
+                @Html.TextBoxFor(c => Model.DataNascimento, new { @class = "form-control" })
+            </div>
+
+            <input type="submit" name="Salvar" class="btn btn-default"/>
+
+        }
+    </div>
+</body>
+</html>
