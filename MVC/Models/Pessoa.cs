@@ -3,9 +3,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MVC.Models
 {
-    public class PessoaModels
+    public class Pessoa
     {
-        [Required]
+        [Key]
         public int Codigo { get; set; }
 
         [Required(ErrorMessage = "CPF é obrigatório!")]

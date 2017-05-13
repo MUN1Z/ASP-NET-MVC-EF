@@ -22,15 +22,15 @@ namespace MVC.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(PessoaModels pessoa)
+        public ActionResult Create(Pessoa pessoa)
         {
             ModelState.Remove("Codigo");
-            List<PessoaModels> lista = new List<PessoaModels>();
+            List<Pessoa> lista = new List<Pessoa>();
 
             if(ModelState.IsValid)
             {
                 if (Session["ListaPessoas"] != null)
-                    lista.AddRange((List<PessoaModels>) Session["ListaPessoas"]);
+                    lista.AddRange((List<Pessoa>) Session["ListaPessoas"]);
 
                 pessoa.Codigo = lista.Count + 1;
 
@@ -49,16 +49,16 @@ namespace MVC.Controllers
         {
 
             if (Session["ListaPessoas"] != null)
-                return View((List<PessoaModels>)Session["ListaPessoas"]);
+                return View((List<Pessoa>)Session["ListaPessoas"]);
 
             return View();
         }
 
         public ActionResult Edit(int id)
         {
-            if (((List<PessoaModels>) Session["ListaPessoas"]).Where(c => c.Codigo.Equals(id)).Any())
+            if (((List<Pessoa>) Session["ListaPessoas"]).Where(c => c.Codigo.Equals(id)).Any())
             {
-                var model = ((List<PessoaModels>)Session["ListaPessoas"]).Where(c => c.Codigo.Equals(id)).FirstOrDefault();
+                var model = ((List<Pessoa>)Session["ListaPessoas"]).Where(c => c.Codigo.Equals(id)).FirstOrDefault();
                 return View("Create", model);
             }
 
@@ -66,31 +66,31 @@ namespace MVC.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(PessoaModels model)
+        public ActionResult Edit(Pessoa model)
         {
-            if (((List<PessoaModels>) Session["ListaPessoas"]).Where(c => c.Codigo.Equals(model.Codigo)).Any())
+            if (((List<Pessoa>) Session["ListaPessoas"]).Where(c => c.Codigo.Equals(model.Codigo)).Any())
             {
-                var modelBase = ((List<PessoaModels>)Session["ListaPessoas"]).Where(c => c.Codigo.Equals(model.Codigo)).FirstOrDefault();
-                ((List<PessoaModels>)Session["ListaPessoas"])[modelBase.Codigo - 1] = model;
+                var modelBase = ((List<Pessoa>)Session["ListaPessoas"]).Where(c => c.Codigo.Equals(model.Codigo)).FirstOrDefault();
+                ((List<Pessoa>)Session["ListaPessoas"])[modelBase.Codigo - 1] = model;
             }
             
-            var lista = ((List<PessoaModels>)Session["ListaPessoas"]);
+            var lista = ((List<Pessoa>)Session["ListaPessoas"]);
 
             return View("List", lista);
         }
 
         public ActionResult Delete(int id)
         {
-            if (((List<PessoaModels>)Session["ListaPessoas"]).Where(c => c.Codigo.Equals(id)).Any())
+            if (((List<Pessoa>)Session["ListaPessoas"]).Where(c => c.Codigo.Equals(id)).Any())
             {
-                var modelBase = ((List<PessoaModels>)Session["ListaPessoas"]).Where(c => c.Codigo.Equals(id)).FirstOrDefault();
-                var lista = ((List<PessoaModels>)Session["ListaPessoas"]);
+                var modelBase = ((List<Pessoa>)Session["ListaPessoas"]).Where(c => c.Codigo.Equals(id)).FirstOrDefault();
+                var lista = ((List<Pessoa>)Session["ListaPessoas"]);
                 lista.Remove(modelBase);
                 Session["ListaPessoas"] = lista;
                 return View("List", lista);
             }
 
-            return View("List", ((List<PessoaModels>)Session["ListaPessoas"]));
+            return View("List", ((List<Pessoa>)Session["ListaPessoas"]));
         }
     }
 }
