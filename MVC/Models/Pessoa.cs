@@ -8,7 +8,7 @@ namespace MVC.Models
         [Key]
         public int Codigo { get; set; }
 
-        [Required(ErrorMessage = "CPF é obrigatório!")]
+        [Required]
         [MaxLength(11)]
         public string Cpf { get; set; }
         

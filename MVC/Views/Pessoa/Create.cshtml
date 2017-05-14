@@ -1,9 +1,8 @@
-﻿@model MVC.Models.PessoaModels
+﻿@model MVC.Models.Pessoa
 
 @{
     ViewBag.Title = "Cadastro de Pessoa";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    Html.EnableClientValidation();
 }
 
 <!DOCTYPE html>
@@ -18,6 +17,7 @@
     <div class="container">
         @using (Html.BeginForm())
         {
+            @Html.ValidationSummary();
 
             @Html.HiddenFor(c => Model.Codigo)
             
@@ -31,6 +31,7 @@
                 @Html.LabelFor(c => Model.Nome)
                 @Html.TextBoxFor(c => Model.Nome, new { @class = "form-control" })
                 @Html.ValidationMessageFor(c => Model.Nome)
+                @Html.ValidationMessageFor(c => Model.Nome)
             </div>
 
             <div class="form-group">
@@ -41,6 +42,7 @@
             <div class="form-group">
                 @Html.LabelFor(c => Model.Email)
                 @Html.TextBoxFor(c => Model.Email, new { @class = "form-control" })
+                @Html.ValidationMessageFor(c => Model.Email)
             </div>
 
             <div class="form-group">
